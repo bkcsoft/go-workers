@@ -2,6 +2,7 @@ package workers
 
 import (
 	"testing"
+	"os"
 
 	"github.com/customerio/gospec"
 )
@@ -12,14 +13,21 @@ import (
 // is the way to go. This shouldn't require too much typing, because
 // there will be typically only one top-level spec per class/feature.
 
+var RedisHost = "localhost:6379"
+
 func TestAllSpecs(t *testing.T) {
+	tmp := os.Getenv("REDIS_HOST")
+	if len(tmp) > 0 {
+		RedisHost = tmp
+	}
+	
 	r := gospec.NewRunner()
 
 	r.Parallel = false
 
 	r.BeforeEach = func() {
 		Configure(map[string]string{
-			"server":   "localhost:6379",
+			"server":   RedisHost,
 			"process":  "1",
 			"database": "15",
 			"pool":     "1",

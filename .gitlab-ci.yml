@@ -1,0 +1,21 @@
+stages:
+- test
+
+variables:
+  REDIS_HOST: redis:6379
+
+.go_stuff: &go_stuff
+  image: golang:1.10
+  before_script:
+  - mkdir -p /go/src/gitlab.com/${CI_PROJECT_NAMESPACE}
+  - ln -s ${CI_PROJECT_DIR} /go/src/gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+  - cd /go/src/gitlab.com/${CI_PROJECT_NAMESPACE}/${CI_PROJECT_NAME}
+
+test:
+  <<: *go_stuff
+  stage: test
+  services:
+  - redis
+  script:
+  - go get -t -v ./...
+  - go test ./...

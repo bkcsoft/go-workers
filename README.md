@@ -1,5 +1,11 @@
-[![Build Status](https://travis-ci.org/jrallison/go-workers.png)](https://travis-ci.org/jrallison/go-workers)
+[![pipeline status](https://gitlab.com/bkc/go-workers/badges/master/pipeline.svg)](https://gitlab.com/bkc/go-workers/commits/master)
+[![coverage report](https://gitlab.com/bkc/go-workers/badges/master/coverage.svg)](https://gitlab.com/bkc/go-workers/commits/master)
+
 [![GoDoc](https://godoc.org/github.com/jrallison/go-workers?status.png)](https://godoc.org/github.com/jrallison/go-workers)
+
+# GoWorkers
+
+Forked from https://github.com/jrallison/go-workers since it seemed unmaintained.
 
 [Sidekiq](http://sidekiq.org/) compatible
 background workers in [golang](http://golang.org/).
@@ -12,7 +18,7 @@ background workers in [golang](http://golang.org/).
 * provides stats on what jobs are currently running
 * well tested
 
-Example usage:
+## Example usage:
 
 ```go
 package main
@@ -69,5 +75,3 @@ func main() {
   workers.Run()
 }
 ```
-
-Initial development sponsored by [Customer.io](http://customer.io)
